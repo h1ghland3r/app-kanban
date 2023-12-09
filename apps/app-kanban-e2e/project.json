@@ -1,0 +1,30 @@
+{
+  "name": "app-kanban-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/app-kanban-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/app-kanban-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "app-kanban:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "app-kanban:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "app-kanban:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["app-kanban"]
+}
