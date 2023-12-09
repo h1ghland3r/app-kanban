@@ -1,4 +1,8 @@
 {
+  "affected": {
+    "defaultBase": "origin/main"
+  },
+  "defaultProject": "app-kanban",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
@@ -58,13 +62,15 @@
       "e2eTestRunner": "cypress"
     },
     "@nx/angular:library": {
-      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "prefix": "app"
+      "style": "scss",
+      "prefix": "app",
+      "projectNameAndRootFormat": "derived"
     },
     "@nx/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "prefix": "app"
     }
   },
   "tasksRunnerOptions": {
