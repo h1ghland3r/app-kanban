@@ -1,0 +1,19 @@
+{
+  "generators": {
+    "component": {
+      "implementation": "./src/generators/component",
+      "schema": "./src/generators/component/schema.json",
+      "description": "Generator component"
+    },
+    "library": {
+      "implementation": "./src/generators/library",
+      "schema": "./src/generators/library/schema.json",
+      "description": "Generator library"
+    },
+    "story": {
+      "implementation": "./src/generators/story",
+      "schema": "./src/generators/story/schema.json",
+      "description": "Generator story"
+    }
+  }
+}

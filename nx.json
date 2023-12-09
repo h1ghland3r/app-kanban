@@ -58,11 +58,19 @@
       "e2eTestRunner": "cypress"
     },
     "@nx/angular:library": {
+      "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "prefix": "app"
     },
     "@nx/angular:component": {
       "style": "scss"
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nx/workspace/tasks-runners/default",
+      "options": {}
     }
   },
   "nxCloudAccessToken": "MGM5M2U1ODctNzIwMS00OTA3LWIxOTMtZDhjMDkwYWMxOWE0fHJlYWQtd3JpdGU="
