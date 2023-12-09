@@ -1,0 +1,20 @@
+import 'jest-preset-angular/setup-jest';
+// the order of imports matter
+import { defineGlobalsInjections } from '@ngneat/spectator';
+
+defineGlobalsInjections({
+  errorOnUnknownElements: true,
+  errorOnUnknownProperties: true
+});
+
+// Please update jest.config.ts to have "isolatedModules: true" like below:
+transform: {
+  '^.+\\.(ts|mjs|js|html)$': [
+    'jest-preset-angular',
+    {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$',
+      isolatedModules: true
+    }
+  ]
+},

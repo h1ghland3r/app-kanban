@@ -1,0 +1,15 @@
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { <%= classify(name)%>Component } from './<%= dasherize(name)%>.component';
+
+describe('<%= classify(name)%>Component', () => {
+  let spectator: Spectator<<%= classify(name)%>Component>;
+  const createComponent = createComponentFactory(<%= classify(name)%>Component);
+
+  beforeEach(() => {
+    spectator = createComponent();
+  });
+
+  it('should create', () => {
+    expect(spectator.component).toBeTruthy();
+  });
+});
