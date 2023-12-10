@@ -1,1 +1,42 @@
-<section class="px-4 md:px-40 py-16">board-container works!</section>
+<app-header [title]="'Kanban Code Challenge'" [classes]="'bg-indigo-800 text-white py-4'"></app-header>
+<section class="px-4 md:px-40 py-16">
+    <div class="flex justify-center">
+        <button mat-raised-button color="primary" aria-label="board-add-task">
+            Create Task
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="flex py-8">
+        <div class="flex justify-center w-full gap-4 gap-x-16">
+            <!-- To Do Column -->
+            <div class="card-container bg-red-200 rounded-lg p-4">
+                <h2 class="text-lg font-semibold mb-4">To Do</h2>
+
+                <div class="task" *ngFor="let task of todoTasks">
+                    <app-card [title]="task.title" [description]="task.description">
+                    </app-card>
+                </div>
+            </div>
+
+            <!-- Doing Column -->
+            <div class="card-container bg-blue-200 rounded-lg p-4">
+                <h2 class="text-lg font-semibold mb-4">Doing</h2>
+
+                <div class="task" *ngFor="let task of doingTasks">
+                    <app-card [title]="task.title" [description]="task.description">
+                    </app-card>
+                </div>
+            </div>
+
+            <!-- Done Column -->
+            <div class="card-container bg-green-200 rounded-lg p-4">
+                <h2 class="text-lg font-semibold mb-4">Done</h2>
+
+                <div class="task" *ngFor="let task of doneTasks">
+                    <app-card [title]="task.title" [description]="task.description">
+                    </app-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

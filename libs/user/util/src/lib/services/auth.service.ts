@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -25,6 +25,14 @@ export class AuthService {
 
     public getToken(): string | null {
         return localStorage.getItem('token');
+    }
+
+    public setAuthorizationHeader(): HttpHeaders {
+        return new HttpHeaders({
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${this.getToken()}`
+        });
     }
 
     public logout() {

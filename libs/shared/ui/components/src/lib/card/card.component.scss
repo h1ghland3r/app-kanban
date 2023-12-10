@@ -5,15 +5,14 @@ mat-card {
     flex-direction: column;
     background-color: #ffffff;
     transition: box-shadow 0.1s ease-in-out;
-
-    &:hover {
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.12);
-    }
+    border-radius: 4px;
 
     mat-card-header {
         background-color: #f4f5f7;
         border-bottom: 1px solid #dfe1e6;
         padding: 8px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
     }
 
     mat-card-title {
@@ -25,5 +24,6 @@ mat-card {
     mat-card-content {
         padding: 8px;
         color: #172b4d;
+        border-radius: 4px;
     }
 }
