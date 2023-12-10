@@ -1,11 +1,11 @@
 {
-    "name": "tasks-feature-board",
+    "name": "user-util",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "libs/tasks/feature-board/src",
+    "sourceRoot": "libs/user/util/src",
     "prefix": "app",
     "tags": [
-        "type:feature",
-        "domain:tasks"
+        "type:util",
+        "domain:user"
     ],
     "projectType": "library",
     "targets": {
@@ -15,7 +15,7 @@
                 "{workspaceRoot}/coverage/{projectRoot}"
             ],
             "options": {
-                "jestConfig": "libs/tasks/feature-board/jest.config.ts"
+                "jestConfig": "libs/user/util/jest.config.ts"
             }
         },
         "lint": {

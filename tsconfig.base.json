@@ -17,7 +17,9 @@
         "paths": {
             "@app/workspace-plugin": ["tools/workspace-plugin/index.ts"],
             "shared/ui/components": ["libs/shared/ui/components/src/index.ts"],
-            "tasks/feature-board": ["libs/tasks/feature-board/src/index.ts"]
+            "tasks/feature-board": ["libs/tasks/feature-board/src/index.ts"],
+            "user/shell": ["libs/user/shell/src/index.ts"],
+            "user/util": ["libs/user/util/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
