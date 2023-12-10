@@ -9,8 +9,8 @@ import { environment } from '../environments/environments';
     providedIn: 'root'
 })
 export class AuthService {
-    httpClient = inject(HttpClient);
-    router = inject(Router);
+    private httpClient = inject(HttpClient);
+    private router = inject(Router);
 
 
     public login(login: string, senha: string) {

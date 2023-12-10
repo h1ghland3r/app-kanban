@@ -6,8 +6,8 @@ import { AuthService } from '../services/auth.service';
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    authService = inject(AuthService);
-    router = inject(Router);
+    private authService = inject(AuthService);
+    private router = inject(Router);
 
     canActivate(): boolean {
         if (this.authService.getToken()) {

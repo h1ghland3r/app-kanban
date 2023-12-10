@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class CardComponent {
     @Input() title?: string = '';
     @Input() description?: string = '';
+    @Input() classes?: string = '';
     @Input() cardWidth: number = 300;
-    @Input() cardHeight: number = 400;
+    @Input() cardHeight: number = 200;
 }

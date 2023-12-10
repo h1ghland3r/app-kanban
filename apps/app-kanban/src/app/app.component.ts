@@ -10,11 +10,13 @@ import { AuthService } from 'user/util';
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    authService = inject(AuthService);
+    private authService = inject(AuthService);
 
+    // update credentials to be able to test Not Authenticated Component and the AuthGuard working
     private credentials = { login: "letscode", password: "lets@123" };
 
     constructor() {
+        localStorage.removeItem('token');
         this.authService.login(this.credentials.login, this.credentials.password).subscribe();
     }
 }
