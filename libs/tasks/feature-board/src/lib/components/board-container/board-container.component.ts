@@ -4,13 +4,13 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { tap } from 'rxjs';
-import { CardComponent, HeaderComponent } from 'shared/ui/components';
+import { CardComponent, HeaderComponent, LoadingSpinnerComponent } from 'shared/ui/components';
 import { TaskService } from '../../services/task.service';
 
 @Component({
     selector: 'app-board-container',
     standalone: true,
-    imports: [CommonModule, CardComponent, HeaderComponent, MatButtonModule, MatIconModule],
+    imports: [CommonModule, CardComponent, HeaderComponent, LoadingSpinnerComponent, MatButtonModule, MatIconModule],
     templateUrl: './board-container.component.html',
     styleUrl: './board-container.component.scss'
 })

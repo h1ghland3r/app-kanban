@@ -1,9 +1,11 @@
 <app-header [title]="'Kanban Code Challenge'" [classes]="'bg-indigo-800 text-white py-4'"></app-header>
+
+<app-loading-spinner></app-loading-spinner>
 <section class="px-4 md:px-40 py-16">
     <div class="flex justify-center">
         <button mat-raised-button color="primary" aria-label="board-add-task">
-            Create Task
             <mat-icon>add</mat-icon>
+            Create Task
         </button>
     </div>
     <div class="flex py-8">
