@@ -4,7 +4,7 @@
 <div *ngIf="showContent">
     <section class="px-4 md:px-40 py-16">
         <div class="flex justify-center">
-            <button mat-raised-button color="primary" aria-label="board-add-task">
+            <button mat-raised-button color="primary" aria-label="board-add-task" (click)="openCreateTaskModal()">
                 <mat-icon>add</mat-icon>
                 Create Task
             </button>
@@ -16,7 +16,7 @@
                     <h2 class="text-lg font-semibold mb-4">To Do</h2>
 
                     <div class="task" *ngFor="let task of todoTasks">
-                        <app-card [title]="task.title" [description]="task.description">
+                        <app-card [title]="task.titulo" [description]="task.conteudo" [hasFooterActions]="true">
                         </app-card>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <h2 class="text-lg font-semibold mb-4">Doing</h2>
 
                     <div class="task" *ngFor="let task of doingTasks">
-                        <app-card [title]="task.title" [description]="task.description">
+                        <app-card [title]="task.titulo" [description]="task.conteudo" [hasFooterActions]="true">
                         </app-card>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <h2 class="text-lg font-semibold mb-4">Done</h2>
 
                     <div class="task" *ngFor="let task of doneTasks">
-                        <app-card [title]="task.title" [description]="task.description">
+                        <app-card [title]="task.titulo" [description]="task.conteudo" [hasFooterActions]="true">
                         </app-card>
                     </div>
                 </div>

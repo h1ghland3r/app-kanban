@@ -1,0 +1,17 @@
+<h2 mat-dialog-title class="bg-indigo-800 text-white pb-3.5">New task</h2>
+<div mat-dialog-content class="flex flex-col">
+    <form [formGroup]="form" class="create-task__form flex flex-col pt-4" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input matInput class="w-full" placeholder="Title" name="title" formControlName="title" required>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput class="w-full h-32" placeholder="Description" name="description"
+                formControlName="description" required></textarea>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="flex justify-end pb-4 px-6">
+    <button mat-raised-button color="secondary" class="mr-2" [mat-dialog-close] cdkFocusInitial>Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="onSubmit()"
+        [disabled]="form.invalid">Confirm</button>
+</div>
