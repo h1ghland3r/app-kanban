@@ -1,9 +1,9 @@
 <mat-card [style.width.px]="cardWidth" [style.height.px]="cardHeight">
     <mat-card-header>
         <span class="flex grow justify-start">
-            <mat-card-title>{{ title }}</mat-card-title>
+            <mat-card-title>{{ task?.titulo }}</mat-card-title>
         </span>
-        <span class="flex justify-end cursor-pointer">
+        <span class="flex justify-end cursor-pointer" (click)="onEditClick()">
             <mat-icon>edit</mat-icon>
         </span>
     </mat-card-header>
@@ -12,13 +12,15 @@
         </markdown>
     </mat-card-content>
     <div class="absolute bottom-0 left-0 right-0 bg-gray-100 p-2 flex justify-between">
-        <span class="move-left flex grow justify-start cursor-pointer" matTooltip="Move task to the left column">
+        <span class="move-left flex grow justify-start cursor-pointer" matTooltip="Move task to the left column"
+            (click)="onMoveLeftClick()" [ngClass]="{'invisible': task?.lista === taskStatus.TODO}">
             <mat-icon>chevron_left</mat-icon>
         </span>
-        <span class="delete flex cursor-pointer" matTooltip="Delete task">
+        <span class="delete flex cursor-pointer" matTooltip="Delete task" (click)="onDeleteClick()">
             <mat-icon>delete</mat-icon>
         </span>
-        <span class="move-right flex grow justify-end cursor-pointer" matTooltip="Move task to the right column">
+        <span class="move-right flex grow justify-end cursor-pointer" matTooltip="Move task to the right column"
+            (click)="onMoveRightClick()" [ngClass]="{'invisible': task?.lista === taskStatus.DONE}">
             <mat-icon>chevron_right</mat-icon>
         </span>
     </div>

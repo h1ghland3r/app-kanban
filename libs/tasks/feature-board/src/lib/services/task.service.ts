@@ -27,6 +27,22 @@ export class TaskService {
             )
     }
 
+    public updateTask(task: Task): Observable<Task> {
+        const headers = this.authService.setAuthorizationHeader();
+        return this.httpClient.put<Task>(`${environment.endpoints.cards}/${task.id}`, task, { headers })
+            .pipe(
+                catchError(this.errorHandler)
+            )
+    }
+
+    public deleteTask(task: Task): Observable<Task[]> {
+        const headers = this.authService.setAuthorizationHeader();
+        return this.httpClient.delete<Task[]>(`${environment.endpoints.cards}/${task.id}`, { headers })
+            .pipe(
+                catchError(this.errorHandler)
+            )
+    }
+
     private errorHandler(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {

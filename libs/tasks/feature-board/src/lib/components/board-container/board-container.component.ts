@@ -27,20 +27,20 @@ export class BoardContainerComponent implements OnInit {
     showContent = false;
 
     todoTasks: Task[] = [];
-    doingTasks: any[] = [{ titulo: 'Task 1', conteudo: 'Lorem Ipsum' }, { titulo: 'Task 2', conteudo: 'Lorem Ipsum' }];
-    doneTasks: any[] = [{ titulo: 'Task 1', conteudo: 'Lorem Ipsum' }];
+    doingTasks: Task[] = [];
+    doneTasks: Task[] = [];
 
     public constructor() {
         this.getAllTasks();
     }
 
     public ngOnInit(): void {
-        // To simulate server side call
+        // To simulate server side
         this.loadingService.show();
         setTimeout(() => {
             this.loadingService.hide();
             this.showContent = true;
-        }, 2000);
+        }, 1000);
     }
 
     public openCreateTaskModal(): void {
@@ -51,15 +51,7 @@ export class BoardContainerComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe((task: NewTask) => {
             this.taskService.createTask(task).subscribe();
-            this.showContent = false;
-            this.loadingService.show();
             this.getAllTasks();
-
-            // To simulate server side call
-            setTimeout(() => {
-                this.loadingService.hide();
-                this.showContent = true;
-            }, 1000);
         });
     }
 
@@ -67,21 +59,156 @@ export class BoardContainerComponent implements OnInit {
         this.taskService.getAll()
             .pipe(
                 tap((tasks: Task[]) => {
-                    tasks.forEach(task => {
-                        if (task.lista === TaskStatus.TODO && !this.todoTasks.some(existingTask => existingTask.id === task.id)) {
-                            this.todoTasks.push(task);
-                        }
-
-                        if (task.lista === TaskStatus.DOING && !this.doingTasks.some(existingTask => existingTask.id === task.id)) {
-                            this.doingTasks.push(task);
-                        }
-
-                        if (task.lista === TaskStatus.DONE && !this.doneTasks.some(existingTask => existingTask.id === task.id)) {
-                            this.doneTasks.push(task);
-                        }
-                    });
+                    this.populateLists(tasks);
                 }),
             )
             .subscribe();
+    }
+
+    public deleteTask(task: Task): void {
+        this.taskService.deleteTask(task)
+            .pipe(
+                tap((tasks: Task[]) => {
+                    this.updateListAfterDeleting(tasks);
+                }),
+            )
+            .subscribe();
+    }
+
+    public moveLeft(task: Task): void {
+        if (task.lista === TaskStatus.DOING) {
+            task.lista = TaskStatus.TODO;
+        }
+
+        if (task.lista === TaskStatus.DONE) {
+            task.lista = TaskStatus.DOING;
+        }
+
+        this.updateTask(task);
+    }
+
+    public moveRight(task: Task): void {
+        if (task.lista === TaskStatus.TODO) {
+            task.lista = TaskStatus.DOING;
+        }
+
+        if (task.lista === TaskStatus.DOING) {
+            task.lista = TaskStatus.DONE;
+        }
+
+        this.updateTask(task);
+    }
+
+    private updateTask(task: Task): void {
+        this.taskService.updateTask(task)
+            .pipe(
+                tap((task: Task) => {
+                    if (task) {
+                        this.getAllTasks();
+                    }
+                }),
+            )
+            .subscribe();
+    }
+
+    private populateLists(tasks: Task[]): void {
+        this.showContent = false;
+        this.loadingService.show();
+
+        //clear the lists
+        this.todoTasks = [];
+        this.doingTasks = [];
+        this.doneTasks = [];
+
+        tasks.forEach(task => {
+            if (task.lista === TaskStatus.TODO && !this.todoTasks.some(existingTask => existingTask.id === task.id)) {
+                this.todoTasks.push(task);
+            }
+
+            if (task.lista === TaskStatus.DOING && !this.doingTasks.some(existingTask => existingTask.id === task.id)) {
+                this.doingTasks.push(task);
+            }
+
+            if (task.lista === TaskStatus.DONE && !this.doneTasks.some(existingTask => existingTask.id === task.id)) {
+                this.doneTasks.push(task);
+            }
+        });
+
+        this.loadingService.show();
+
+        // To simulate server side
+        setTimeout(() => {
+            this.loadingService.hide();
+            this.showContent = true;
+        }, 500);
+    }
+
+    private updateListAfterDeleting(tasks: Task[]): void {
+        this.showContent = false;
+        this.loadingService.show();
+
+        //clear the lists
+        this.todoTasks = [];
+        this.doingTasks = [];
+        this.doneTasks = [];
+
+        tasks.forEach(task => {
+            if (task.lista === TaskStatus.TODO) {
+                this.todoTasks.push(task);
+            }
+
+            if (task.lista === TaskStatus.DOING) {
+                this.doingTasks.push(task);
+            }
+
+            if (task.lista === TaskStatus.DONE) {
+                this.doneTasks.push(task);
+            }
+        });
+
+        this.loadingService.show();
+
+        // To simulate server side
+        setTimeout(() => {
+            this.loadingService.hide();
+            this.showContent = true;
+        }, 500);
+    }
+
+    private updateTaskInList(taskToUpdate: Task): void {
+        this.showContent = false;
+        this.loadingService.show();
+
+        const todoTaskIndex = this.todoTasks.findIndex(task => task.id === taskToUpdate.id);
+        const doingTaskIndex = this.doingTasks.findIndex(task => task.id === taskToUpdate.id);
+        const doneTaskIndex = this.doneTasks.findIndex(task => task.id === taskToUpdate.id);
+
+        console.log(this.todoTasks);
+        console.log(this.doingTasks);
+        console.log(this.doneTasks);
+
+        if (todoTaskIndex !== -1) {
+            this.todoTasks[todoTaskIndex] = taskToUpdate;
+        }
+
+        if (doingTaskIndex !== -1) {
+            this.doingTasks[doingTaskIndex] = taskToUpdate;
+        }
+
+        if (doneTaskIndex !== -1) {
+            this.doneTasks[doneTaskIndex] = taskToUpdate;
+        }
+
+        console.log(this.todoTasks);
+        console.log(this.doingTasks);
+        console.log(this.doneTasks);
+
+        this.loadingService.show();
+
+        // To simulate server side
+        setTimeout(() => {
+            this.loadingService.hide();
+            this.showContent = true;
+        }, 500);
     }
 }
