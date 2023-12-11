@@ -174,41 +174,4 @@ export class BoardContainerComponent implements OnInit {
             this.showContent = true;
         }, 500);
     }
-
-    private updateTaskInList(taskToUpdate: Task): void {
-        this.showContent = false;
-        this.loadingService.show();
-
-        const todoTaskIndex = this.todoTasks.findIndex(task => task.id === taskToUpdate.id);
-        const doingTaskIndex = this.doingTasks.findIndex(task => task.id === taskToUpdate.id);
-        const doneTaskIndex = this.doneTasks.findIndex(task => task.id === taskToUpdate.id);
-
-        console.log(this.todoTasks);
-        console.log(this.doingTasks);
-        console.log(this.doneTasks);
-
-        if (todoTaskIndex !== -1) {
-            this.todoTasks[todoTaskIndex] = taskToUpdate;
-        }
-
-        if (doingTaskIndex !== -1) {
-            this.doingTasks[doingTaskIndex] = taskToUpdate;
-        }
-
-        if (doneTaskIndex !== -1) {
-            this.doneTasks[doneTaskIndex] = taskToUpdate;
-        }
-
-        console.log(this.todoTasks);
-        console.log(this.doingTasks);
-        console.log(this.doneTasks);
-
-        this.loadingService.show();
-
-        // To simulate server side
-        setTimeout(() => {
-            this.loadingService.hide();
-            this.showContent = true;
-        }, 500);
-    }
 }
