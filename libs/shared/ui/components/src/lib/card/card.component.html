@@ -8,7 +8,8 @@
         </span>
     </mat-card-header>
     <mat-card-content class="h-40 overflow-y-auto pb-16">
-        <p class="text-sm">{{ description }}</p>
+        <markdown lineHighlight commandLine ngPreserveWhitespaces [data]="convertedDescriptionMarkdown">
+        </markdown>
     </mat-card-content>
     <div class="absolute bottom-0 left-0 right-0 bg-gray-100 p-2 flex justify-between">
         <span class="move-left flex grow justify-start cursor-pointer" matTooltip="Move task to the left column">

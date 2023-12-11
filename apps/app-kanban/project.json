@@ -8,17 +8,30 @@
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:application",
-            "outputs": ["{options.outputPath}"],
+            "outputs": [
+                "{options.outputPath}"
+            ],
             "options": {
                 "outputPath": "dist/apps/app-kanban",
                 "index": "apps/app-kanban/src/index.html",
                 "browser": "apps/app-kanban/src/main.ts",
-                "polyfills": ["zone.js"],
+                "polyfills": [
+                    "zone.js"
+                ],
                 "tsConfig": "apps/app-kanban/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
-                "assets": ["apps/app-kanban/src/favicon.ico", "apps/app-kanban/src/assets"],
-                "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "apps/app-kanban/src/styles.scss"],
-                "scripts": []
+                "assets": [
+                    "apps/app-kanban/src/favicon.ico",
+                    "apps/app-kanban/src/assets"
+                ],
+                "styles": [
+                    "@angular/material/prebuilt-themes/indigo-pink.css",
+                    "apps/app-kanban/src/styles.scss",
+                    "node_modules/prismjs/themes/prism-okaidia.css"
+                ],
+                "scripts": [
+                    "node_modules/prismjs/prism.js"
+                ]
             },
             "configurations": {
                 "production": {
@@ -64,11 +77,15 @@
         },
         "lint": {
             "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"]
+            "outputs": [
+                "{options.outputFile}"
+            ]
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+            ],
             "options": {
                 "jestConfig": "apps/app-kanban/jest.config.ts"
             }
