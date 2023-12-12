@@ -8,20 +8,24 @@
         </span>
     </mat-card-header>
     <mat-card-content class="h-40 overflow-y-auto pb-16">
+        @if (task?.conteudo) {
         <markdown lineHighlight commandLine ngPreserveWhitespaces [data]="convertedDescriptionMarkdown">
         </markdown>
+        }
     </mat-card-content>
     <div class="absolute bottom-0 left-0 right-0 bg-gray-100 p-2 flex justify-between">
-        <span class="move-left flex grow justify-start cursor-pointer" matTooltip="Move task to the left column"
-            (click)="onMoveLeftClick()" [ngClass]="{'invisible': task?.lista === taskStatus.TODO}">
-            <mat-icon>chevron_left</mat-icon>
+        <span class="move-left flex grow justify-start">
+            <mat-icon class="cursor-pointer" matTooltip="Move task to the left column"
+                [ngClass]="{'invisible': task?.lista === taskStatus.TODO}"
+                (click)="onMoveLeftClick()">chevron_left</mat-icon>
         </span>
         <span class="delete flex cursor-pointer" matTooltip="Delete task" (click)="onDeleteClick()">
             <mat-icon>delete</mat-icon>
         </span>
-        <span class="move-right flex grow justify-end cursor-pointer" matTooltip="Move task to the right column"
-            (click)="onMoveRightClick()" [ngClass]="{'invisible': task?.lista === taskStatus.DONE}">
-            <mat-icon>chevron_right</mat-icon>
+        <span class="move-right flex grow justify-end">
+            <mat-icon class="cursor-pointer" matTooltip="Move task to the right column"
+                [ngClass]="{'invisible': task?.lista === taskStatus.DONE}"
+                (click)="onMoveRightClick()">chevron_right</mat-icon>
         </span>
     </div>
 </mat-card>

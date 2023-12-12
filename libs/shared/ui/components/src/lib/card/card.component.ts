@@ -20,11 +20,10 @@ export class CardComponent implements OnInit {
     @Input() task?: Task;
     @Input() cardWidth: number = 300;
     @Input() cardHeight: number = 200;
-    @Output() editTask: EventEmitter<any> = new EventEmitter<any>();
-    @Output() deleteTask: EventEmitter<any> = new EventEmitter<any>();
-    @Output() moveLeft: EventEmitter<any> = new EventEmitter<any>();
-    @Output() moveRight: EventEmitter<any> = new EventEmitter<any>();
-
+    @Output() editTask: EventEmitter<Task> = new EventEmitter<Task>();
+    @Output() deleteTask: EventEmitter<Task> = new EventEmitter<Task>();
+    @Output() moveLeft: EventEmitter<Task> = new EventEmitter<Task>();
+    @Output() moveRight: EventEmitter<Task> = new EventEmitter<Task>();
 
     private markdownConverterService = inject(MarkdownConverterService);
     public convertedDescriptionMarkdown: any;
@@ -34,10 +33,6 @@ export class CardComponent implements OnInit {
         if (this.task?.conteudo) {
             this.convertToMarkdown(this.task.conteudo);
         }
-    }
-
-    public convertToMarkdown(description: string) {
-        this.convertedDescriptionMarkdown = this.markdownConverterService.convertToMarkdown(description);
     }
 
     public onEditClick() {
@@ -54,5 +49,9 @@ export class CardComponent implements OnInit {
 
     public onMoveRightClick() {
         this.moveRight.emit(this.task);
+    }
+
+    private convertToMarkdown(description: string) {
+        this.convertedDescriptionMarkdown = this.markdownConverterService.convertToMarkdown(description);
     }
 }

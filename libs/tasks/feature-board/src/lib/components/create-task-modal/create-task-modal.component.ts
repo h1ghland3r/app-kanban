@@ -16,23 +16,25 @@ import { NewTask, TaskStatus } from 'shared/domain';
     styleUrls: ['./create-task-modal.component.scss']
 })
 export class CreateTaskModalComponent {
-    dialogRef = inject(MatDialogRef<CreateTaskModalComponent>);
+    private dialogRef = inject(MatDialogRef<CreateTaskModalComponent>);
     fb = inject(FormBuilder);
 
     form = this.fb.group({
-        title: [null, Validators.required],
-        description: [null, Validators.required],
+        title: ['', Validators.required],
+        description: ['', Validators.required],
     })
 
     public onSubmit(): void {
+        if (this.form.invalid) {
+            return;
+        }
+
         const newTask: NewTask = {
             titulo: this.form.controls.title.value ?? '',
             conteudo: this.form.controls.description.value ?? '',
             lista: TaskStatus.TODO,
         }
 
-        if (this.form.valid) {
-            this.dialogRef.close(newTask);
-        }
+        this.dialogRef.close(newTask);
     }
 }

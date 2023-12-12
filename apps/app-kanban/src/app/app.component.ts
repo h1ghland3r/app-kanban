@@ -12,11 +12,20 @@ import { AuthService } from 'user/util';
 export class AppComponent {
     private authService = inject(AuthService);
 
-    // update credentials to be able to test Not Authenticated Component and the AuthGuard working
-    private credentials = { login: "letscode", password: "lets@123" };
-
     constructor() {
+        // update credentials to test the NotAuthenticatedComponent and AuthGuard working, also you can sign out
+        const credentials = { login: 'letscode', password: 'lets@123' };
+
         localStorage.removeItem('token');
-        this.authService.login(this.credentials.login, this.credentials.password).subscribe();
+        if (credentials.login && credentials.password) {
+            this.authService.login(credentials.login, credentials.password).subscribe(
+                (response) => {
+                    console.log('Login successful:', response);
+                },
+                (error) => {
+                    console.error('Login error:', error);
+                }
+            );
+        }
     }
 }

@@ -10,6 +10,7 @@ import { CardComponent, HeaderComponent, LoadingSpinnerComponent } from 'shared/
 import { LoadingService } from 'shared/util/services';
 import { TaskService } from '../../services/task.service';
 import { CreateTaskModalComponent } from '../create-task-modal/create-task-modal.component';
+import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.component';
 
 @Component({
     selector: 'app-board-container',
@@ -46,12 +47,28 @@ export class BoardContainerComponent implements OnInit {
     public openCreateTaskModal(): void {
         const dialogRef = this.dialog.open(CreateTaskModalComponent, {
             width: '400px',
-            data: {}
+            height: '450px'
         });
 
         dialogRef.afterClosed().subscribe((task: NewTask) => {
-            this.taskService.createTask(task).subscribe();
-            this.getAllTasks();
+            if (task) {
+                this.taskService.createTask(task).subscribe();
+                this.getAllTasks();
+            }
+        });
+    }
+
+    public openEditTaskModal(task: Task): void {
+        const dialogRef = this.dialog.open(EditTaskModalComponent, {
+            width: '400px',
+            height: '450px',
+            data: task
+        });
+
+        dialogRef.afterClosed().subscribe((task: Task) => {
+            if (task) {
+                this.updateTask(task);
+            }
         });
     }
 
@@ -88,12 +105,12 @@ export class BoardContainerComponent implements OnInit {
     }
 
     public moveRight(task: Task): void {
-        if (task.lista === TaskStatus.TODO) {
-            task.lista = TaskStatus.DOING;
-        }
-
         if (task.lista === TaskStatus.DOING) {
             task.lista = TaskStatus.DONE;
+        }
+
+        if (task.lista === TaskStatus.TODO) {
+            task.lista = TaskStatus.DOING;
         }
 
         this.updateTask(task);

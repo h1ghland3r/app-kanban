@@ -16,8 +16,9 @@
                     <h2 class="text-lg font-semibold mb-4">To Do</h2>
 
                     <div class="task" *ngFor="let task of todoTasks">
-                        <app-card [title]="task.titulo" [task]="task" (deleteTask)="deleteTask($event)"
-                            (moveLeft)="moveLeft($event)" (moveRight)="moveRight($event)">
+                        <app-card [title]="task.titulo" [task]="task" (editTask)="openEditTaskModal(task)"
+                            (deleteTask)="deleteTask($event)" (moveLeft)="moveLeft($event)"
+                            (moveRight)="moveRight($event)">
                         </app-card>
                     </div>
                 </div>
@@ -27,8 +28,9 @@
                     <h2 class="text-lg font-semibold mb-4">Doing</h2>
 
                     <div class="task" *ngFor="let task of doingTasks">
-                        <app-card [title]="task.titulo" [task]="task" (deleteTask)="deleteTask($event)"
-                            (moveLeft)="moveLeft($event)" (moveRight)="moveRight($event)">
+                        <app-card [title]="task.titulo" [task]="task" (editTask)="openEditTaskModal(task)"
+                            (deleteTask)="deleteTask($event)" (moveLeft)="moveLeft($event)"
+                            (moveRight)="moveRight($event)">
                         </app-card>
                     </div>
                 </div>
@@ -38,8 +40,9 @@
                     <h2 class="text-lg font-semibold mb-4">Done</h2>
 
                     <div class="task" *ngFor="let task of doneTasks">
-                        <app-card [title]="task.titulo" [task]="task" (deleteTask)="deleteTask($event)"
-                            (moveLeft)="moveLeft($event)" (moveRight)="moveRight($event)">
+                        <app-card [title]="task.titulo" [task]="task" (editTask)="openEditTaskModal(task)"
+                            (deleteTask)="deleteTask($event)" (moveLeft)="moveLeft($event)"
+                            (moveRight)="moveRight($event)">
                         </app-card>
                     </div>
                 </div>
